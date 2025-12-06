@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahee Thakkar - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: #000;
+            background: #fff;
+            padding: 40px;
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        .header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+        
+        .name {
+            font-size: 24pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .title {
+            font-size: 12pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 10pt;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .contact-info span {
+            display: inline-block;
+        }
+        
+        .section {
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3px;
+            letter-spacing: 0.5px;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 15px;
+        }
+        
+        .job-title, .degree {
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 3px;
+        }
+        
+        .company, .school {
+            font-size: 11pt;
+            margin-bottom: 3px;
+        }
+        
+        .date {
+            font-size: 10pt;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .description {
+            font-size: 10pt;
+            margin-top: 5px;
+            margin-left: 0;
+        }
+        
+        .description ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .description li {
+            margin-bottom: 3px;
+        }
+        
+        .skills-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .skills-category {
+            margin-bottom: 8px;
+        }
+        
+        .skills-category strong {
+            font-size: 10pt;
+        }
+        
+        .certifications-list {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .certifications-list li {
+            margin-bottom: 5px;
+            font-size: 10pt;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 12pt;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .print-button:hover {
+            background: #333;
+        }
+        
+        @media print {
+            .print-button {
+                display: none;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">Print / Save as PDF</button>
+    <div class="header">
+        <div class="name">MAHEE THAKKAR</div>
+        <div class="title">LUXURY & BRAND MANAGEMENT</div>
+        <div class="contact-info">
+            <span>+1 (470) 979-0909</span>
+            <span>Atlanta, Georgia</span>
+            <span>maheethakkar20@gmail.com</span>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">PROFILE</div>
+        
+        <div class="experience-item">
+            <div class="job-title">Founder</div>
+            <div class="company">THE LOOKBOOK EDIT</div>
+            <div class="date">2024 - Present</div>
+            <div class="description">
+                <ul>
+                    <li>Curated a boutique-discovery Instagram page showcasing craftsmanship-driven luxury labels and emerging designers</li>
+                    <li>Achieved 22K profile views in 90 days, with reels reaching 3.2K-2.3K views and up to 54 shares</li>
+                    <li>Produced all photography and video content during boutique visits, merging product observations with trend insight</li>
+                    <li>Secured consistent brand reposts, including a dedicated feature</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="job-title">Fashion Merchandising Intern</div>
+            <div class="company">2M ATELIERS AND DESIGN PVT. LTD.</div>
+            <div class="date">March 2024 - May 2024</div>
+            <div class="description">
+                <ul>
+                    <li>Supported a strategic partner atelier collaborating with luxury fashion houses including Hermes and Isabel Marant</li>
+                    <li>Assisted with material charting, placement verification, and construction accuracy across categories, ensuring alignment with couture and luxury ready-to-wear standards</li>
+                    <li>Conducted quality assessments to uphold craftsmanship expectations required by partnered maisons</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="job-title">Marketing & Social Media Intern</div>
+            <div class="company">THE GOLDEN THEORY</div>
+            <div class="date">March 2023 - May 2023</div>
+            <div class="description">
+                <ul>
+                    <li>Conducted consumer research to refine positioning and support campaign direction</li>
+                    <li>Curated visual content that contributed to a 40% increase in followers</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="experience-item">
+            <div class="job-title">Social Media Manager</div>
+            <div class="company">ABSOLUTE CRAVING</div>
+            <div class="date">April 2020 - January 2024</div>
+            <div class="description">
+                <ul>
+                    <li>Directed social media strategy for a premium bakery brand, elevating its digital identity and aligning visuals with luxury positioning</li>
+                    <li>Designed and scheduled cohesive content calendars that improved post consistency and consumer recall</li>
+                    <li>Analyzed performance metrics to optimize posting cadence and content types, boosting engagement and reach</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">EDUCATION</div>
+        
+        <div class="education-item">
+            <div class="degree">M.F.A in Luxury & Brand Management</div>
+            <div class="school">Savannah College of Art and Design (SCAD)</div>
+            <div class="date">2025 - 2027</div>
+        </div>
+        
+        <div class="education-item">
+            <div class="degree">BBA in Marketing & Management</div>
+            <div class="school">Narsee Monjee Institute of Management Studies (NMIMS)</div>
+            <div class="date">2022 - 2025</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">SKILLS</div>
+        <div class="skills-section">
+            <div class="skills-category">
+                <strong>Relevant Skills:</strong> Product Sensitivity, Trend Interpretation, Visual Storytelling, Retail Merchandising Awareness, Market and Consumer Insight Analysis
+            </div>
+            <div class="skills-category">
+                <strong>Analytical & Technical:</strong> Excel, Tableau, Roomstyler, Canva, Adobe Photoshop (developing proficiency)
+            </div>
+            <div class="skills-category">
+                <strong>Core Strengths:</strong> Precision, Aesthetic Judgment, Research Depth, Adaptability, Disciplined Work Ethic
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">CERTIFICATIONS</div>
+        <ul class="certifications-list">
+            <li>Inside LVMH Program</li>
+            <li>ESSEC - Introduction to Luxury Brand Management</li>
+            <li>ESSEC - Luxury Industry: Customers & Experiences</li>
+            <li>London College of Fashion - Fashion & Sustainability</li>
+        </ul>
+    </div>
+</body>
+</html>
+
