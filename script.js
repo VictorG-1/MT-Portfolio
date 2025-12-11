@@ -97,21 +97,45 @@ document.addEventListener('DOMContentLoaded', () => {
 // Form Submission Handler
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // Get form values
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
+        const name = contactForm.querySelector('input[name="name"]').value;
+        const email = contactForm.querySelector('input[name="email"]').value;
+        const message = contactForm.querySelector('textarea[name="message"]').value;
 
         // Simple validation
         if (name && email && message) {
-            // Here you would typically send the data to a server
-            // For now, we'll just show an alert
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Submit form via POST
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    throw new Error(result.error || 'Form submission failed');
+                }
+            } catch (error) {
+                alert('Sorry, there was an error sending your message. Please try again or email me directly at maheethakkar20@gmail.com');
+                console.error('Form submission error:', error);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         } else {
             alert('Please fill in all fields.');
         }
@@ -293,6 +317,7 @@ if (carouselTrack) {
 }
 
 // Video Mute/Unmute Functionality
+// Video controls for home page
 const trendVideo = document.getElementById('trendVideo');
 const muteBtn = document.getElementById('muteBtn');
 const muteIcon = document.getElementById('muteIcon');
@@ -302,18 +327,18 @@ if (trendVideo && muteBtn) {
     // Initialize video as muted
     trendVideo.muted = true;
     muteBtn.classList.add('muted');
-    muteLine.style.opacity = '1';
+    if (muteLine) muteLine.style.opacity = '1';
     
     // Mute/Unmute toggle
     muteBtn.addEventListener('click', () => {
         if (trendVideo.muted) {
             trendVideo.muted = false;
             muteBtn.classList.remove('muted');
-            muteLine.style.opacity = '0';
+            if (muteLine) muteLine.style.opacity = '0';
         } else {
             trendVideo.muted = true;
             muteBtn.classList.add('muted');
-            muteLine.style.opacity = '1';
+            if (muteLine) muteLine.style.opacity = '1';
         }
     });
     
@@ -321,11 +346,186 @@ if (trendVideo && muteBtn) {
     trendVideo.addEventListener('volumechange', () => {
         if (trendVideo.muted || trendVideo.volume === 0) {
             muteBtn.classList.add('muted');
-            muteLine.style.opacity = '1';
+            if (muteLine) muteLine.style.opacity = '1';
         } else {
             muteBtn.classList.remove('muted');
-            muteLine.style.opacity = '0';
+            if (muteLine) muteLine.style.opacity = '0';
         }
     });
+}
+
+// Video controls for portfolio page
+const trendVideoPortfolio = document.getElementById('trendVideoPortfolio');
+const muteBtnPortfolio = document.getElementById('muteBtnPortfolio');
+const muteIconPortfolio = document.getElementById('muteIconPortfolio');
+const muteLinePortfolio = document.getElementById('muteLinePortfolio');
+
+if (trendVideoPortfolio && muteBtnPortfolio) {
+    // Initialize video as muted
+    trendVideoPortfolio.muted = true;
+    muteBtnPortfolio.classList.add('muted');
+    if (muteLinePortfolio) muteLinePortfolio.style.opacity = '1';
+    
+    // Mute/Unmute toggle
+    muteBtnPortfolio.addEventListener('click', () => {
+        if (trendVideoPortfolio.muted) {
+            trendVideoPortfolio.muted = false;
+            muteBtnPortfolio.classList.remove('muted');
+            if (muteLinePortfolio) muteLinePortfolio.style.opacity = '0';
+        } else {
+            trendVideoPortfolio.muted = true;
+            muteBtnPortfolio.classList.add('muted');
+            if (muteLinePortfolio) muteLinePortfolio.style.opacity = '1';
+        }
+    });
+    
+    // Update button state when video volume changes
+    trendVideoPortfolio.addEventListener('volumechange', () => {
+        if (trendVideoPortfolio.muted || trendVideoPortfolio.volume === 0) {
+            muteBtnPortfolio.classList.add('muted');
+            if (muteLinePortfolio) muteLinePortfolio.style.opacity = '1';
+        } else {
+            muteBtnPortfolio.classList.remove('muted');
+            if (muteLinePortfolio) muteLinePortfolio.style.opacity = '0';
+        }
+    });
+}
+
+// BTS Carousel Functionality
+const btsMainTrack = document.getElementById('btsMainTrack');
+const btsThumbnailsTrack = document.getElementById('btsThumbnailsTrack');
+const btsThumbnails = document.querySelectorAll('.bts-thumbnail');
+const btsMainSlideGroups = document.querySelectorAll('.bts-main-slide-group');
+const btsMainVideos = document.querySelectorAll('.bts-main-video');
+const btsPrevBtn = document.getElementById('btsPrevBtn');
+const btsNextBtn = document.getElementById('btsNextBtn');
+
+let currentBtsGroupIndex = 0;
+const itemsPerGroup = 3;
+const totalItems = 11; // Total number of BTS items
+const totalGroups = Math.ceil(totalItems / itemsPerGroup);
+
+if (btsMainSlideGroups.length > 0) {
+    // Initialize: all groups visible, track positioned at start
+    btsMainTrack.style.transform = 'translateX(0%)';
+
+    // Video click to play functionality
+    btsMainVideos.forEach(video => {
+        const mediaContainer = video.closest('.bts-main-media');
+        const playOverlay = mediaContainer.querySelector('.bts-play-overlay');
+        
+        // Click on video or overlay to play/pause
+        const togglePlay = () => {
+            if (video.paused) {
+                video.play();
+                mediaContainer.classList.add('video-playing');
+            } else {
+                video.pause();
+                mediaContainer.classList.remove('video-playing');
+            }
+        };
+
+        if (playOverlay) {
+            playOverlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlay();
+            });
+        }
+
+        mediaContainer.addEventListener('click', (e) => {
+            if (e.target === video || e.target.closest('.bts-play-overlay')) {
+                return;
+            }
+            togglePlay();
+        });
+
+        // Hide overlay when video ends
+        video.addEventListener('ended', () => {
+            mediaContainer.classList.remove('video-playing');
+        });
+    });
+
+    // Navigation functions
+    function showBtsGroup(groupIndex) {
+        if (groupIndex < 0 || groupIndex >= totalGroups) return;
+
+        // Update track position
+        btsMainTrack.style.transform = `translateX(-${groupIndex * 100}%)`;
+
+        // Pause all videos in non-active groups
+        btsMainSlideGroups.forEach((group, index) => {
+            if (index !== groupIndex) {
+                const videos = group.querySelectorAll('.bts-main-video');
+                videos.forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                    const mediaContainer = video.closest('.bts-main-media');
+                    if (mediaContainer) {
+                        mediaContainer.classList.remove('video-playing');
+                    }
+                });
+            }
+        });
+
+        // Update thumbnails - mark all thumbnails in current group as active
+        const startIndex = groupIndex * itemsPerGroup;
+        const endIndex = Math.min(startIndex + itemsPerGroup, totalItems);
+        
+        btsThumbnails.forEach((thumbnail, index) => {
+            thumbnail.classList.remove('active');
+            if (index >= startIndex && index < endIndex) {
+                thumbnail.classList.add('active');
+            }
+        });
+
+
+        currentBtsGroupIndex = groupIndex;
+    }
+
+    // Arrow navigation
+    if (btsPrevBtn) {
+        btsPrevBtn.addEventListener('click', () => {
+            const prevIndex = (currentBtsGroupIndex - 1 + totalGroups) % totalGroups;
+            showBtsGroup(prevIndex);
+        });
+    }
+
+    if (btsNextBtn) {
+        btsNextBtn.addEventListener('click', () => {
+            const nextIndex = (currentBtsGroupIndex + 1) % totalGroups;
+            showBtsGroup(nextIndex);
+        });
+    }
+
+    // Initialize thumbnails - mark first group as active
+    const initialStartIndex = 0;
+    const initialEndIndex = Math.min(itemsPerGroup, totalItems);
+    btsThumbnails.forEach((thumbnail, index) => {
+        if (index >= initialStartIndex && index < initialEndIndex) {
+            thumbnail.classList.add('active');
+        }
+    });
+
+    // Thumbnail click handler
+    btsThumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+            const targetGroup = Math.floor(index / itemsPerGroup);
+            showBtsGroup(targetGroup);
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (btsMainTrack && document.querySelector('.bts-carousel-container')) {
+            if (e.key === 'ArrowLeft') {
+                const prevIndex = (currentBtsGroupIndex - 1 + totalGroups) % totalGroups;
+                showBtsGroup(prevIndex);
+            } else if (e.key === 'ArrowRight') {
+                const nextIndex = (currentBtsGroupIndex + 1) % totalGroups;
+                showBtsGroup(nextIndex);
+            }
+        }
+    });
+
 }
 
