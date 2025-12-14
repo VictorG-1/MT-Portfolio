@@ -47,6 +47,12 @@ body {
     padding: 0 40px;
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
 /* Base Mobile Optimizations */
 * {
     -webkit-tap-highlight-color: transparent;
@@ -804,6 +810,7 @@ body {
 /* Behind The Scenes Section */
 .bts-section {
     padding: 120px 0;
+    padding-top: 160px;
     background-color: var(--bg-primary);
     position: relative;
 }
@@ -811,6 +818,7 @@ body {
 .bts-header {
     text-align: center;
     margin-bottom: 80px;
+    padding: 0 20px;
 }
 
 .bts-subtitle {
@@ -837,6 +845,35 @@ body {
     overflow: hidden;
     margin-bottom: 40px;
     background-color: #e5e5e5;
+}
+
+@media (max-width: 768px) {
+    .bts-section {
+        padding: 60px 0;
+        padding-top: 140px;
+    }
+
+    .bts-header {
+        margin-bottom: 50px;
+        padding: 0 20px;
+    }
+
+    .bts-subtitle {
+        font-size: 14px;
+        margin-top: 12px;
+        line-height: 1.6;
+    }
+
+    .bts-main-display {
+        height: 50vh;
+        min-height: 400px;
+        max-height: 500px;
+        margin-bottom: 30px;
+    }
+
+    .bts-carousel-container {
+        padding: 0 20px;
+    }
 }
 
 .bts-main-track {
@@ -1120,6 +1157,15 @@ body {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .about-hero,
+    .portfolio-hero,
+    .gallery-hero {
+        padding: 40px 20px 50px;
+        padding-top: 140px;
+    }
+}
+
 .page-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(64px, 8vw, 110px);
@@ -1128,6 +1174,19 @@ body {
     letter-spacing: -3px;
     color: var(--text-primary);
     text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: clamp(36px, 10vw, 42px);
+        letter-spacing: -1px;
+        line-height: 1.2;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+    }
 }
 
 .page-subtitle {
@@ -3629,66 +3688,84 @@ body {
 
     /* Hero section - responsive */
     .hero {
-        padding: 100px 20px 60px;
-        padding-top: 120px;
+        padding: 40px 20px 60px;
+        padding-top: 140px;
         min-height: auto;
         flex-direction: column;
+        align-items: flex-start;
     }
 
     .hero-content {
         max-width: 100%;
         width: 100%;
         padding: 0;
-        padding-right: 0;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
     }
 
     .hero-title {
-        font-size: clamp(48px, 12vw, 72px);
-        margin-bottom: 30px;
+        font-size: clamp(42px, 10vw, 56px);
+        margin-bottom: 25px;
+        line-height: 1.1;
+        letter-spacing: -1px;
     }
 
     .hero-subtitle {
-        font-size: 16px;
-        margin-bottom: 40px;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 35px;
         max-width: 100%;
+        color: var(--text-secondary);
     }
 
     .hero-buttons {
         flex-direction: column;
         width: 100%;
-        gap: 15px;
+        gap: 12px;
     }
 
     .btn {
         width: 100%;
         text-align: center;
-        padding: 14px 30px;
+        padding: 16px 30px;
+        font-size: 13px;
+        letter-spacing: 1px;
     }
 
     .hero-image {
         position: relative;
         width: 100%;
-        height: 300px;
-        margin-top: 0;
-        opacity: 0.15;
+        height: 280px;
+        margin-top: 20px;
+        opacity: 0.12;
+        order: -1;
     }
 
     .hero-img {
-        filter: grayscale(100%) brightness(0.2);
+        filter: grayscale(100%) brightness(0.15);
+        object-fit: cover;
     }
 
     .featured-work {
-        padding: 80px 0;
+        padding: 60px 0;
     }
 
     .section-title {
-        font-size: 42px;
+        font-size: 36px;
+        margin-bottom: 40px;
+        line-height: 1.2;
+        padding: 0 20px;
+    }
+
+    .section-subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+        padding: 0 20px;
     }
 
     .work-grid {
         grid-template-columns: 1fr;
         gap: 30px;
+        padding: 0 20px;
     }
 
     .work-item {
@@ -3720,23 +3797,42 @@ body {
     }
 
     .instagram-section {
-        padding: 0;
+        padding: 60px 0;
+    }
+
+    .instagram-header {
+        padding: 0 20px;
+        margin-bottom: 40px;
     }
 
     .instagram-subtitle {
         font-size: 14px;
+        line-height: 1.6;
+        margin-top: 10px;
+    }
+
+    .instagram-grid {
+        padding: 0 20px;
+        gap: 20px;
     }
 
     .contact-section {
-        padding: 80px 0;
+        padding: 60px 0;
     }
 
     .contact-content {
-        gap: 50px;
+        gap: 40px;
+        padding: 0 20px;
+        flex-direction: column;
     }
 
     .contact-info h3 {
         font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .contact-form {
+        width: 100%;
     }
 
     .form-group input,
@@ -4868,16 +4964,19 @@ body {
 
     /* Portfolio Page Mobile */
     .portfolio-hero {
-        padding: 100px 0 50px;
-        padding-top: 120px;
+        padding: 40px 20px 50px;
+        padding-top: 140px;
     }
 
     .page-title {
-        font-size: 36px;
+        font-size: 38px;
+        line-height: 1.2;
+        margin-bottom: 15px;
     }
 
     .page-subtitle {
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     .portfolio-section {
@@ -4953,17 +5052,24 @@ body {
 
     /* About Page Mobile */
     .about-hero {
-        padding: 100px 0 50px;
-        padding-top: 120px;
+        padding: 40px 20px 50px;
+        padding-top: 140px;
+    }
+
+    .about-content {
+        padding: 60px 0;
     }
 
     .about-grid {
-        gap: 35px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 0 20px;
     }
 
     .about-text h2 {
         font-size: 28px;
         margin-bottom: 20px;
+        line-height: 1.3;
     }
 
     .about-text p {
@@ -5007,14 +5113,24 @@ body {
 
     /* Gallery Page Mobile */
     .gallery-hero {
-        padding: 100px 0 50px;
-        padding-top: 120px;
+        padding: 40px 20px 50px;
+        padding-top: 140px;
+    }
+
+    .page-title {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     .gallery-images-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 0 15px;
+        gap: 30px;
+        padding: 0 20px;
     }
 
     .gallery-image-item:nth-child(even) {
