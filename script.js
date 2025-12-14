@@ -97,45 +97,45 @@ document.addEventListener('DOMContentLoaded', () => {
 // Form Submission Handler
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
+    contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
         // Get form values
-        const name = contactForm.querySelector('input[name="name"]').value;
-        const email = contactForm.querySelector('input[name="email"]').value;
-        const message = contactForm.querySelector('textarea[name="message"]').value;
+        const name = contactForm.querySelector('input[name="name"]').value.trim();
+        const email = contactForm.querySelector('input[name="email"]').value.trim();
+        const message = contactForm.querySelector('textarea[name="message"]').value.trim();
 
         // Simple validation
         if (name && email && message) {
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Submit form via POST
-                const formData = new FormData(contactForm);
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    alert('Thank you for your message! I will get back to you soon.');
-                    contactForm.reset();
-                } else {
-                    throw new Error(result.error || 'Form submission failed');
-                }
-            } catch (error) {
-                alert('Sorry, there was an error sending your message. Please try again or email me directly at maheethakkar20@gmail.com');
-                console.error('Form submission error:', error);
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
             }
+
+            // Prepare email content
+            const toEmail = 'maheethakkar20@gmail.com';
+            const subject = encodeURIComponent('Contact Form Submission from Portfolio');
+            const body = encodeURIComponent(
+                `Name: ${name}\n` +
+                `Email: ${email}\n\n` +
+                `Message:\n${message}`
+            );
+
+            // Create mailto link
+            const mailtoLink = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Your email client should open now. If it doesn\'t, please email me directly at maheethakkar20@gmail.com');
+            
+            // Reset form after a short delay
+            setTimeout(() => {
+                contactForm.reset();
+            }, 500);
         } else {
             alert('Please fill in all fields.');
         }
