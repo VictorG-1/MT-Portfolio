@@ -136,7 +136,7 @@ body {
 }
 
 .logo-img {
-    height: 60px;
+    height: 90px;
     width: auto;
     display: block;
     transition: var(--transition);
@@ -1408,16 +1408,7 @@ body {
 }
 
 .timeline-year::after {
-    content: '';
-    position: absolute;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--accent-glow);
+    display: none;
 }
 
 .timeline-content h3 {
@@ -3141,7 +3132,7 @@ body {
 }
 
 .certifications-list {
-    list-style: none;
+    list-style: none !important;
     padding: 0;
     margin: 0;
 }
@@ -3151,16 +3142,14 @@ body {
     font-size: 14px;
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
-    padding-left: 20px;
+    padding-left: 0 !important;
     position: relative;
+    list-style: none !important;
 }
 
 .certifications-list li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 18px;
+    display: none !important;
+    content: none !important;
 }
 
 .certifications-list li:last-child {
@@ -3943,8 +3932,37 @@ body {
         font-size: 18px;
     }
 
+    .resume-description {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .resume-description strong {
+        display: block;
+        margin-bottom: 8px;
+        margin-top: 10px;
+    }
+
+    .resume-description strong:first-child {
+        margin-top: 0;
+    }
+
+    .resume-item .resume-description {
+        margin-bottom: 15px;
+    }
+
     .resume-skills h3 {
         font-size: 28px;
+    }
+
+    .certifications-list li {
+        padding-left: 0 !important;
+        list-style: none !important;
+    }
+
+    .certifications-list li::before {
+        display: none !important;
+        content: none !important;
     }
 
     .skills-list {
@@ -4877,9 +4895,6 @@ body {
         margin-bottom: 20px;
     }
 
-    .bts-main-slide-group {
-        flex-direction: column;
-    }
 
     .bts-nav-btn {
         width: 30px;
@@ -5009,6 +5024,22 @@ body {
     .resume-description {
         font-size: 13px;
         line-height: 1.5;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .resume-description strong {
+        display: block;
+        margin-bottom: 8px;
+        margin-top: 10px;
+    }
+
+    .resume-description strong:first-child {
+        margin-top: 0;
+    }
+
+    .resume-item .resume-description {
+        margin-bottom: 15px;
     }
 
     .resume-skills-title {
@@ -5020,6 +5051,11 @@ body {
     .certifications-list li {
         font-size: 13px;
         padding: 8px 0;
+        padding-left: 25px;
+    }
+
+    .certifications-list li::before {
+        display: none;
     }
 
     .resume-skills h3 {
