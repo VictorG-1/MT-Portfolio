@@ -359,12 +359,49 @@ const trendVideoPortfolio = document.getElementById('trendVideoPortfolio');
 const muteBtnPortfolio = document.getElementById('muteBtnPortfolio');
 const muteIconPortfolio = document.getElementById('muteIconPortfolio');
 const muteLinePortfolio = document.getElementById('muteLinePortfolio');
+const videoPlayBtnPortfolio = document.getElementById('videoPlayBtnPortfolio');
+const videoPlayOverlayPortfolio = document.getElementById('videoPlayOverlayPortfolio');
+const videoWrapperPortfolio = document.querySelector('.video-wrapper');
 
 if (trendVideoPortfolio && muteBtnPortfolio) {
     // Initialize video as muted
     trendVideoPortfolio.muted = true;
     muteBtnPortfolio.classList.add('muted');
     if (muteLinePortfolio) muteLinePortfolio.style.opacity = '1';
+    
+    // Play button functionality
+    if (videoPlayBtnPortfolio && videoPlayOverlayPortfolio) {
+        videoPlayBtnPortfolio.addEventListener('click', (e) => {
+            e.stopPropagation();
+            trendVideoPortfolio.play();
+        });
+        
+        videoPlayOverlayPortfolio.addEventListener('click', (e) => {
+            if (e.target === videoPlayOverlayPortfolio) {
+                trendVideoPortfolio.play();
+            }
+        });
+    }
+    
+    // Hide play overlay when video starts playing
+    trendVideoPortfolio.addEventListener('play', () => {
+        if (videoPlayOverlayPortfolio) {
+            videoPlayOverlayPortfolio.classList.add('hidden');
+        }
+        if (videoWrapperPortfolio) {
+            videoWrapperPortfolio.classList.add('playing');
+        }
+    });
+    
+    // Show play overlay when video is paused
+    trendVideoPortfolio.addEventListener('pause', () => {
+        if (videoPlayOverlayPortfolio) {
+            videoPlayOverlayPortfolio.classList.remove('hidden');
+        }
+        if (videoWrapperPortfolio) {
+            videoWrapperPortfolio.classList.remove('playing');
+        }
+    });
     
     // Mute/Unmute toggle
     muteBtnPortfolio.addEventListener('click', () => {

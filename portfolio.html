@@ -249,10 +249,17 @@
                 </div>
                 <div class="video-container">
                     <div class="video-wrapper">
-                        <video id="trendVideoPortfolio" class="trend-video" controls preload="metadata">
+                        <video id="trendVideoPortfolio" class="trend-video" controls preload="metadata" poster="Assets/Video Portfolio.jpeg">
                             <source src="Assets/Trend Forecasting Video.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
+                        <div class="video-play-overlay" id="videoPlayOverlayPortfolio">
+                            <button class="video-play-btn" id="videoPlayBtnPortfolio" aria-label="Play Video">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </div>
                         <div class="video-controls">
                             <button class="video-control-btn" id="muteBtnPortfolio" aria-label="Toggle Mute">
                                 <svg id="muteIconPortfolio" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -327,8 +334,8 @@
                     </div>
                 </div>
                 <div class="resume-download">
-                    <a href="Mahee_Thakkar_Resume.html" target="_blank" class="btn btn-primary">View & Download Resume</a>
-                    <p style="margin-top: 15px; font-size: 12px; color: var(--text-muted); opacity: 0.8;">Click to open resume. Use the "Print / Save as PDF" button or press Ctrl+P and select "Save as PDF" to download.</p>
+                    <a href="Mahee Thakkar_Resume.pdf" target="_blank" class="btn btn-primary">View & Download Resume</a>
+                    <p style="margin-top: 15px; font-size: 12px; color: var(--text-muted); opacity: 0.8;">Click to open and download resume PDF.</p>
                 </div>
             </div>
         </section>

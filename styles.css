@@ -41,6 +41,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Unbold all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -253,7 +258,7 @@ body {
 .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(72px, 11vw, 160px);
-    font-weight: 200;
+    font-weight: normal;
     line-height: 0.9;
     margin-bottom: 40px;
     letter-spacing: -3px;
@@ -436,7 +441,7 @@ body {
 .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(48px, 7vw, 84px);
-    font-weight: 200;
+    font-weight: normal;
     margin-bottom: 80px;
     text-align: center;
     letter-spacing: -2px;
@@ -566,6 +571,21 @@ body {
     transition: var(--transition-slow);
 }
 
+.video-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--poster-image);
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .video-wrapper:hover {
     border-color: var(--accent);
     box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -587,6 +607,67 @@ body {
 .trend-video::-webkit-media-controls-volume-slider,
 .trend-video::-webkit-media-controls-timeline {
     filter: brightness(0) invert(1);
+}
+
+.video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    cursor: pointer;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: auto;
+}
+
+.video-play-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.video-play-btn {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    color: #000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(2px);
+}
+
+.video-play-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.video-play-btn:active {
+    transform: scale(0.95);
+}
+
+.video-play-btn svg {
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+}
+
+.video-wrapper.playing .video-play-overlay {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .video-controls {
@@ -1169,7 +1250,7 @@ body {
 .page-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(64px, 8vw, 110px);
-    font-weight: 200;
+    font-weight: normal;
     margin-bottom: 25px;
     letter-spacing: -3px;
     color: var(--text-primary);
@@ -1408,7 +1489,7 @@ body {
 .portfolio-title {
     font-family: 'Playfair Display', serif;
     font-size: 72px;
-    font-weight: 200;
+    font-weight: normal;
     color: var(--text-primary);
     margin-bottom: 20px;
     letter-spacing: -2px;
@@ -1504,7 +1585,7 @@ body {
 
 .portfolio-layout-1 .portfolio-title {
     font-size: 84px;
-    font-weight: 100;
+    font-weight: normal;
     margin-bottom: 25px;
     color: var(--text-primary);
 }
@@ -1669,7 +1750,7 @@ body {
 .portfolio-layout-3 .portfolio-title {
     font-size: 68px;
     margin-bottom: 25px;
-    font-weight: 300;
+    font-weight: normal;
 }
 
 .portfolio-layout-3 .portfolio-subtitle {
@@ -1776,7 +1857,7 @@ body {
 .portfolio-layout-4 .portfolio-title {
     font-size: 70px;
     margin-bottom: 25px;
-    font-weight: 200;
+    font-weight: normal;
 }
 
 .portfolio-layout-4 .portfolio-subtitle {
@@ -1836,7 +1917,7 @@ body {
 .portfolio-layout-5 .portfolio-title {
     font-size: 65px;
     margin-bottom: 20px;
-    font-weight: 200;
+    font-weight: normal;
     line-height: 1.1;
 }
 
@@ -1948,7 +2029,7 @@ body {
 .portfolio-layout-6 .portfolio-title {
     font-size: 75px;
     margin-bottom: 25px;
-    font-weight: 200;
+    font-weight: normal;
     line-height: 1.1;
     position: relative;
     z-index: 1;
@@ -2043,7 +2124,7 @@ body {
 .portfolio-layout-7 .portfolio-title {
     font-size: 70px;
     margin-bottom: 20px;
-    font-weight: 200;
+    font-weight: normal;
     line-height: 1.1;
     position: relative;
     z-index: 1;
@@ -2137,7 +2218,7 @@ body {
 .carousel-overlay-content h3 {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
-    font-weight: 300;
+    font-weight: normal;
     margin-bottom: 15px;
     color: var(--text-primary);
     letter-spacing: -1px;
@@ -2297,7 +2378,7 @@ body {
 .layout-minimalist .layout-text h3 {
     font-family: 'Playfair Display', serif;
     font-size: 64px;
-    font-weight: 200;
+    font-weight: normal;
     margin-bottom: 20px;
     letter-spacing: -2px;
     line-height: 1.1;
@@ -2372,7 +2453,7 @@ body {
 .layout-editorial .layout-text h3 {
     font-family: 'Playfair Display', serif;
     font-size: 56px;
-    font-weight: 400;
+    font-weight: normal;
     margin-bottom: 15px;
     letter-spacing: -1.5px;
     line-height: 1.2;
@@ -2444,7 +2525,7 @@ body {
 
 .layout-lookbook .layout-right h3 {
     font-size: 52px;
-    font-weight: 300;
+    font-weight: normal;
     margin-bottom: 20px;
     letter-spacing: -1px;
     line-height: 1.3;
@@ -2534,7 +2615,7 @@ body {
 
 .layout-geometric .layout-text h3 {
     font-size: 58px;
-    font-weight: 200;
+    font-weight: normal;
     margin-bottom: 18px;
     letter-spacing: -2px;
     line-height: 1.2;
@@ -3879,6 +3960,16 @@ body {
         border-width: 1px;
     }
 
+    .video-play-btn {
+        width: 80px;
+        height: 80px;
+    }
+
+    .video-play-btn svg {
+        width: 40px;
+        height: 40px;
+    }
+
     .video-control-btn {
         width: 40px;
         height: 40px;
@@ -4243,6 +4334,16 @@ body {
 
     .video-container {
         padding: 0 15px;
+    }
+
+    .video-play-btn {
+        width: 70px;
+        height: 70px;
+    }
+
+    .video-play-btn svg {
+        width: 35px;
+        height: 35px;
     }
 
     .video-control-btn {
@@ -4721,6 +4822,16 @@ body {
 
     .video-wrapper {
         padding: 0;
+    }
+
+    .video-play-btn {
+        width: 60px;
+        height: 60px;
+    }
+
+    .video-play-btn svg {
+        width: 30px;
+        height: 30px;
     }
 
     .video-control-btn {
