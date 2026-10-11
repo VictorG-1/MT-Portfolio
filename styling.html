@@ -26,7 +26,7 @@
         <div class="nav-container">
             <div class="logo">
                 <a href="index.html" class="logo-link">
-                    <img src="Assets/Logo.jpeg" alt="Mahee Thakkar" class="logo-img">
+                    <img src="Assets/MT-logo.png" alt="Mahee Thakkar" class="logo-img">
                 </a>
             </div>
             <ul class="nav-menu">
@@ -34,8 +34,8 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="styling.html" class="active">Styling</a></li>
-                <li><a href="new-york.html">New York</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="tiffany.html">Tiffany</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -82,34 +82,10 @@
                     </div>
                     <div class="gallery-image-item">
                         <div class="gallery-image-wrapper">
-                            <img src="Assets/Styling/PO4.jpg" alt="Portfolio Image 4" class="gallery-image">
-                        </div>
-                        <div class="gallery-image-description">
-                            <p>Creative direction for luxury retail experience and brand communication.</p>
-                        </div>
-                    </div>
-                    <div class="gallery-image-item">
-                        <div class="gallery-image-wrapper">
                             <img src="Assets/Styling/PO5.jpg" alt="Portfolio Image 5" class="gallery-image">
                         </div>
                         <div class="gallery-image-description">
                             <p>Fashion editorial concept blending modern aesthetics with timeless elegance.</p>
-                        </div>
-                    </div>
-                    <div class="gallery-image-item">
-                        <div class="gallery-image-wrapper">
-                            <img src="Assets/Styling/PO6.jpg" alt="Portfolio Image 6" class="gallery-image">
-                        </div>
-                        <div class="gallery-image-description">
-                            <p>Brand extension strategy exploring new market opportunities and consumer segments.</p>
-                        </div>
-                    </div>
-                    <div class="gallery-image-item">
-                        <div class="gallery-image-wrapper">
-                            <img src="Assets/Styling/PO7.jpg" alt="Portfolio Image 7" class="gallery-image">
-                        </div>
-                        <div class="gallery-image-description">
-                            <p>Luxury packaging design emphasizing craftsmanship and premium materials.</p>
                         </div>
                     </div>
                     <div class="gallery-image-item">
@@ -384,6 +360,22 @@
                 </div>
             </div>
         </section>
+        <section class="styling-title-hero">
+            <div class="container"><h1>Styling</h1></div>
+        </section>
+        <section class="styling-carousel-section">
+            <div class="container">
+                <div class="styling-carousel" data-styling-carousel>
+                    <button class="styling-carousel-btn styling-previous" type="button" aria-label="Previous image">←</button>
+                    <div class="styling-viewport"><div class="styling-track">
+                        <figure><img src="Assets/Styling/PO1.jpg" alt="Styling project 1"></figure><figure><img src="Assets/Styling/PO2.jpg" alt="Styling project 2"></figure><figure><img src="Assets/Styling/PO3.jpg" alt="Styling project 3"></figure><figure><img src="Assets/Styling/PO5.jpg" alt="Styling project 5"></figure><figure><img src="Assets/Styling/PO8.jpg" alt="Styling project 8"></figure><figure><img src="Assets/Styling/PO9.jpg" alt="Styling project 9"></figure><figure><img src="Assets/Styling/PO10.jpg" alt="Styling project 10"></figure><figure><img src="Assets/Styling/PO11.jpg" alt="Styling project 11"></figure><figure><img src="Assets/Styling/PO12.jpg" alt="Styling project 12"></figure><figure><img src="Assets/Styling/PO13.jpg" alt="Styling project 13"></figure><figure><img src="Assets/Styling/PO14.jpg" alt="Styling project 14"></figure><figure><img src="Assets/Styling/PO15.jpg" alt="Styling project 15"></figure><figure><img src="Assets/Styling/PO16.jpg" alt="Styling project 16"></figure>
+                    </div></div>
+                    <button class="styling-carousel-btn styling-next" type="button" aria-label="Next image">→</button>
+                </div>
+                <div class="styling-carousel-meta"><span class="styling-count">01 / 13</span><p>Personal aesthetic, composition, and visual storytelling.</p></div>
+            </div>
+        </section>
+        <section class="styling-bts"><div class="container"><div class="styling-bts-heading"><p class="eyebrow">Process</p><h2>Behind the scenes</h2></div><div class="styling-bts-grid"><img src="Assets/Behind The Scenes/BTS2.jpg" alt="Behind the scenes"><video controls playsinline preload="metadata"><source src="Assets/Behind The Scenes/BTS5.mp4" type="video/mp4"></video><video controls playsinline preload="metadata"><source src="Assets/Behind The Scenes/BTS6.mp4" type="video/mp4"></video><video controls playsinline preload="metadata"><source src="Assets/Behind The Scenes/BTS7.mp4" type="video/mp4"></video><video controls playsinline preload="metadata"><source src="Assets/Behind The Scenes/BTS11.mp4" type="video/mp4"></video></div></div></section>
     </main>
 
     <footer class="footer">
@@ -411,6 +403,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('[data-styling-carousel]').forEach((carousel) => {
+            const track = carousel.querySelector('.styling-track'); const slides = Array.from(track.children); const counter = document.querySelector('.styling-count'); let index = 0;
+            const update = () => { track.style.transform = `translateX(-${index * 100}%)`; counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`; };
+            carousel.querySelector('.styling-previous').addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; update(); });
+            carousel.querySelector('.styling-next').addEventListener('click', () => { index = (index + 1) % slides.length; update(); });
+        });
+    </script>
 </body>
 </html>
 
