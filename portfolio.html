@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="portfolio-page">
     <!-- Minimalist Golden Elements -->
     <div class="golden-elements">
         <div class="golden-element golden-circle-1"></div>
@@ -50,6 +50,47 @@
             <div class="container">
                 <h1 class="page-title">Portfolio</h1>
                 <p class="page-subtitle">University presentations & brand design work</p>
+            </div>
+        </section>
+
+        <section class="portfolio-carousel-section" aria-labelledby="portfolio-carousel-title">
+            <div class="container">
+                <div class="portfolio-carousel-heading">
+                    <p>Selected work</p>
+                    <h2 id="portfolio-carousel-title">Presentations &amp; projects</h2>
+                    <div class="portfolio-carousel-controls" aria-label="Portfolio carousel controls">
+                        <button type="button" class="portfolio-carousel-btn" data-portfolio-prev aria-label="Previous project">←</button>
+                        <button type="button" class="portfolio-carousel-btn" data-portfolio-next aria-label="Next project">→</button>
+                    </div>
+                </div>
+
+                <div class="portfolio-carousel-track" data-portfolio-carousel>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/celine-intemporel-01.jpg" alt="CELINE Intemporel luxury skincare strategy presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">01 · Trendbook &amp; strategy</p><h3>CELINE</h3><p>Intemporel par CELINE: a longevity-focused skincare strategy for the APAC market.</p><a href="Assets/Portfolio Presentations/celine-intemporel.pdf" target="_blank">View presentation ↗</a></div></article>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/carcamo-brand-campaign-01.jpg" alt="Carcamo brand identity and advertising campaign presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">02 · Brand identity</p><h3>CARCAMO</h3><p>A visual identity and advertising campaign for Chayse Carcamo’s collection.</p><a href="Assets/Portfolio Presentations/carcamo-brand-campaign.pdf" target="_blank">View presentation ↗</a></div></article>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/confiserie-packaging-01.jpg" alt="Confiserie packaging design presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">03 · Packaging design</p><h3>CONFISERIE</h3><p>A candy-shop inspired visual identity and packaging system for a Savannah concept store.</p><a href="Assets/Portfolio Presentations/confiserie-packaging.pdf" target="_blank">View presentation ↗</a></div></article>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/bazaar-digital-experience-01.jpg" alt="BAZAAR by ShopSCAD digital experience presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">04 · Digital experience</p><h3>BAZAAR <em>by ShopSCAD</em></h3><p>Social media strategy, product storytelling, and an app concept for product discovery.</p><a href="Assets/Portfolio Presentations/bazaar-digital-experience.pdf" target="_blank">View presentation ↗</a></div></article>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/tiffany-repositioning-01.jpg" alt="Tiffany and Co high jewelry repositioning presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">05 · Brand strategy</p><h3>TIFFANY <em>&amp; CO.</em></h3><p>A repositioning strategy to strengthen Tiffany as America’s leading high jewelry house.</p><a href="Assets/Portfolio Presentations/tiffany-repositioning.pdf" target="_blank">View presentation ↗</a></div></article>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/globe-trotter-campaign-01.jpg" alt="Globe-Trotter advertising campaign presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">06 · Advertising campaign</p><h3>GLOBE-TROTTER</h3><p><em>What Stayed With Me</em> — an integrated campaign about the memories people carry.</p><a href="Assets/Portfolio Presentations/globe-trotter-campaign.pdf" target="_blank">View presentation ↗</a></div></article>
+                    <article class="portfolio-carousel-card"><img src="Assets/Portfolio Presentations/ferragamo-trendbook-part-1-01.jpg" alt="Ferragamo Fall Winter 2027 trend forecast presentation cover"><div class="portfolio-card-overlay"><p class="portfolio-card-number">07 · Trend forecast</p><h3>FERRAGAMO</h3><p>Fall/Winter 2027 ready-to-wear research and future-facing trend direction.</p><span class="portfolio-card-actions"><a href="Assets/Portfolio Presentations/ferragamo-trendbook-part-1.pdf" target="_blank">Part 1: trendbook ↗</a><a href="Assets/Portfolio Presentations/ferragamo-trend-forecast-part-2.pdf" target="_blank">Part 2: forecast ↗</a></span></div></article>
+                </div>
+                <p class="portfolio-carousel-note">Hover over a project to explore the brief and open its presentation.</p>
+            </div>
+        </section>
+
+        <section class="portfolio-film-section" aria-labelledby="portfolio-film-title">
+            <div class="container portfolio-film-grid">
+                <div class="portfolio-film-copy">
+                    <p class="portfolio-film-kicker">Moving image</p>
+                    <h2 id="portfolio-film-title">Trend forecasting</h2>
+                    <p>A moving study of future directions in luxury fashion, developed alongside the Ferragamo Fall/Winter 2027 forecast.</p>
+                    <a href="Assets/Trend Forecasting Video.mp4" target="_blank">Watch full film ↗</a>
+                </div>
+                <div class="portfolio-film-media">
+                    <video controls preload="metadata" poster="Assets/Video Portfolio.jpeg">
+                        <source src="Assets/Trend Forecasting Video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
         </section>
 
@@ -283,6 +324,7 @@
             </div>
         </section>
 
+        <!-- Résumé section removed from the portfolio page at the owner's request.
         <section class="resume-section">
             <div class="container">
                 <h2 class="section-title">Resume</h2>
@@ -355,6 +397,7 @@
                 </div>
             </div>
         </section>
+        -->
     </main>
 
     <footer class="footer">

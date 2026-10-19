@@ -17,6 +17,35 @@ if (hamburger && navMenu) {
     });
 }
 
+// Styling page: scroll the behind-the-scenes media carousel by one card.
+document.querySelectorAll('[data-bts-carousel]').forEach((track) => {
+    const section = track.closest('.styling-bts');
+    const previous = section?.querySelector('[data-bts-carousel-prev]');
+    const next = section?.querySelector('[data-bts-carousel-next]');
+    const step = () => {
+        const firstCard = track.firstElementChild;
+        const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 300;
+        return cardWidth + 16;
+    };
+    const move = (direction) => {
+        track.scrollTo({ left: track.scrollLeft + (direction * step()), behavior: 'smooth' });
+    };
+
+    if (previous) previous.addEventListener('click', () => move(-1));
+    if (next) next.addEventListener('click', () => move(1));
+});
+
+// Portfolio carousel controls
+document.querySelectorAll('[data-portfolio-carousel]').forEach(track => {
+    const section = track.closest('.portfolio-carousel-section');
+    const previous = section?.querySelector('[data-portfolio-prev]');
+    const next = section?.querySelector('[data-portfolio-next]');
+    const distance = () => Math.max(track.clientWidth * 0.78, 280);
+
+    previous?.addEventListener('click', () => track.scrollBy({ left: -distance(), behavior: 'smooth' }));
+    next?.addEventListener('click', () => track.scrollBy({ left: distance(), behavior: 'smooth' }));
+});
+
 // Portfolio Filter Functionality
 const filterButtons = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
