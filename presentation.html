@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentation | Mahee Thakkar</title>
+    <link rel="icon" type="image/jpeg" href="Assets/Logo.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="presentation-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" class="logo-link"><img src="Assets/MT-logo.png" alt="Mahee Thakkar" class="logo-img"></a></div>
+            <ul class="nav-menu"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="portfolio.html" class="active">Portfolio</a></li><li><a href="tiffany.html">Tiffany</a></li><li><a href="styling.html">Styling</a></li><li><a href="contact.html">Contact</a></li></ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <main class="presentation-main">
+        <div class="presentation-heading">
+            <a href="portfolio.html" class="presentation-back">← Back to portfolio</a>
+            <p class="eyebrow">Full presentation</p>
+            <h1 id="presentation-title">Presentation</h1>
+        </div>
+        <section class="presentation-viewer" aria-label="Presentation slides">
+            <div class="presentation-stage"><img id="presentation-slide" src="" alt="Presentation slide"></div>
+            <div class="presentation-controls"><button type="button" id="presentation-prev" aria-label="Previous slide">←</button><p id="presentation-count" aria-live="polite">01 / 01</p><button type="button" id="presentation-next" aria-label="Next slide">→</button></div>
+        </section>
+    </main>
+    <script>
+        (() => {
+            const decks = {
+                celine: { title: 'CELINE', folders: [['celine', 61]] }, carcamo: { title: 'CARCAMO', folders: [['carcamo', 41]] }, confiserie: { title: 'CONFISERIE', folders: [['confiserie', 25]] }, bazaar: { title: 'BAZAAR by ShopSCAD', folders: [['bazaar', 87]] }, tiffany: { title: 'TIFFANY & CO.', folders: [['tiffany', 45]] }, 'globe-trotter': { title: 'GLOBE-TROTTER', folders: [['globe-trotter', 71]] }, ferragamo: { title: 'FERRAGAMO', folders: [['ferragamo-part-1', 24], ['ferragamo-part-2', 32]] }
+            };
+            const deck = decks[new URLSearchParams(window.location.search).get('deck')] || decks.celine;
+            const slides = deck.folders.flatMap(([folder, count]) => Array.from({ length: count }, (_, index) => `Assets/Portfolio Presentations/Slides/${folder}/slide-${String(index + 1).padStart(2, '0')}.jpg`));
+            const image = document.querySelector('#presentation-slide'); const title = document.querySelector('#presentation-title'); const count = document.querySelector('#presentation-count'); let index = 0;
+            title.textContent = deck.title; document.title = `${deck.title} | Mahee Thakkar`;
+            const render = () => { image.src = slides[index]; image.alt = `${deck.title} — slide ${index + 1}`; count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`; };
+            document.querySelector('#presentation-prev').addEventListener('click', () => { index = (index - 1 + slides.length) % slides.length; render(); });
+            document.querySelector('#presentation-next').addEventListener('click', () => { index = (index + 1) % slides.length; render(); });
+            document.addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft') document.querySelector('#presentation-prev').click(); if (event.key === 'ArrowRight') document.querySelector('#presentation-next').click(); });
+            render();
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -17,6 +17,90 @@ if (hamburger && navMenu) {
     });
 }
 
+// Use the image-based presentation viewer for every portfolio deck. It is lighter
+// than the original PDFs and works consistently in Safari on macOS and iOS.
+const presentationLinks = {
+    'celine-intemporel.pdf': 'celine',
+    'carcamo-brand-campaign.pdf': 'carcamo',
+    'confiserie-packaging.pdf': 'confiserie',
+    'bazaar-digital-experience.pdf': 'bazaar',
+    'tiffany-repositioning.pdf': 'tiffany',
+    'globe-trotter-campaign.pdf': 'globe-trotter',
+    'ferragamo-trendbook-part-1.pdf': 'ferragamo',
+    'ferragamo-trend-forecast-part-2.pdf': 'ferragamo'
+};
+
+document.querySelectorAll('.portfolio-factfile a[href$=".pdf"]').forEach((link) => {
+    const originalFile = link.getAttribute('href').split('/').pop();
+    const deck = presentationLinks[originalFile];
+    if (!deck) return;
+    link.href = `presentation.html?deck=${deck}`;
+    link.removeAttribute('target');
+    link.textContent = deck === 'ferragamo' ? 'View full presentation ↗' : 'View presentation ↗';
+});
+
+// Portfolio fact files: change PDF slide previews with manual controls.
+document.querySelectorAll('.portfolio-project-card').forEach((card) => {
+    const stage = card.querySelector('.portfolio-slide-stage');
+    const preview = stage?.querySelector('img.is-active');
+    const sourceMatch = preview?.getAttribute('src').match(/Slides\/([^/]+)\/slide-\d+\.jpg$/);
+    if (!stage || !preview || !sourceMatch) return;
+
+    const slideSets = {
+        celine: [{ folder: 'celine', count: 61 }],
+        carcamo: [{ folder: 'carcamo', count: 41 }],
+        confiserie: [{ folder: 'confiserie', count: 25 }],
+        bazaar: [{ folder: 'bazaar', count: 87 }],
+        tiffany: [{ folder: 'tiffany', count: 45 }],
+        'globe-trotter': [{ folder: 'globe-trotter', count: 71 }],
+        'ferragamo-part-1': [
+            { folder: 'ferragamo-part-1', count: 24 },
+            { folder: 'ferragamo-part-2', count: 32 }
+        ]
+    };
+    const segments = slideSets[sourceMatch[1]];
+    if (!segments) return;
+
+    const totalSlides = segments.reduce((total, segment) => total + segment.count, 0);
+    stage.querySelectorAll('img:not(.is-active)').forEach((image) => image.remove());
+    let activeSlide = 0;
+    const counter = document.createElement('span');
+    counter.className = 'portfolio-slide-counter';
+    counter.setAttribute('aria-live', 'polite');
+    stage.append(counter);
+
+    const slideSource = (index) => {
+        let slideNumber = index;
+        for (const segment of segments) {
+            if (slideNumber < segment.count) {
+                return `Assets/Portfolio Presentations/Slides/${segment.folder}/slide-${String(slideNumber + 1).padStart(2, '0')}.jpg`;
+            }
+            slideNumber -= segment.count;
+        }
+        return preview.src;
+    };
+
+    const showSlide = (index) => {
+        activeSlide = (index + totalSlides) % totalSlides;
+        preview.classList.remove('is-active');
+        preview.src = slideSource(activeSlide);
+        preview.alt = `Presentation slide ${activeSlide + 1} of ${totalSlides}`;
+        preview.classList.add('is-active');
+        counter.textContent = `${String(activeSlide + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+    };
+
+    showSlide(0);
+
+    card.querySelector('[data-slide-prev]')?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        showSlide(activeSlide - 1);
+    });
+    card.querySelector('[data-slide-next]')?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        showSlide(activeSlide + 1);
+    });
+});
+
 // Styling page: scroll the behind-the-scenes media carousel by one card.
 document.querySelectorAll('[data-bts-carousel]').forEach((track) => {
     const section = track.closest('.styling-bts');
